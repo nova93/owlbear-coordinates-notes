@@ -4,15 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "bun run --watch main.ts"
   },
   "devDependencies": {
-    "typescript": "~5.9.3",
-    "vite": "^7.1.7"
+    "@types/bun": "^1.2.23",
+    "typescript": "~5.9.3"
   },
   "dependencies": {
-    "@owlbear-rodeo/sdk": "^3.1.0"
+    "@owlbear-rodeo/sdk": "^3.1.0",
+    "markdown-it": "^14.1.0"
   }
 }
