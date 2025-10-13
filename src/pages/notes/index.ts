@@ -1,14 +1,11 @@
 import OBR from '@owlbear-rodeo/sdk';
+import { POPOVER_ID } from '../../config';
 import '../../style.css';
  
 const url = new URL(window.location.toString());
 const sceneId = url.searchParams.get('sceneId');
 const x = url.searchParams.get('x');
 const y = url.searchParams.get('y');
-
-// TODO: duplicated, DRY-it
-const toolID = "coordinates-notes";
-const popoverID = `${toolID}-popover`
 
 const renderNote = async () => {
   const res = await fetch(`/api?${url.searchParams.toString()}`);
@@ -79,7 +76,7 @@ const renderNote = async () => {
 
     // TODO: duplicated, DRY-it
     await OBR.popover.open({
-      id: popoverID,
+      id: POPOVER_ID,
       url: `/notes?sceneId=${sceneId}&x=${x}&y=${y}`,
       height: 10000,
       width: 10000,
@@ -95,7 +92,7 @@ const renderNote = async () => {
 
     // TODO: duplicated, DRY-it
     await OBR.popover.open({
-      id: popoverID,
+      id: POPOVER_ID,
       url: `/notes?sceneId=${sceneId}&x=${x}&y=${y}`,
       height: 500,
         width: 500,

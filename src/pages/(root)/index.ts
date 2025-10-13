@@ -1,9 +1,7 @@
 import OBR from '@owlbear-rodeo/sdk';
+import { POPOVER_ID, TOOL_ID } from '../../config';
 import '../../style.css';
 import type { SceneMeta } from '../../types';
-
-const toolID = "coordinates-notes";
-const popoverID = `${toolID}-popover`
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -15,14 +13,14 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 OBR.onReady(async () => {
   OBR.scene.onReadyChange(async (ready) => {
     if (ready) {
-      const sceneMeta = (await OBR.scene.getMetadata())[`${toolID}/metadata`] as SceneMeta;
+      const sceneMeta = (await OBR.scene.getMetadata())[`${TOOL_ID}/metadata`] as SceneMeta;
       
       if (sceneMeta?.sceneId) {
         console.log('Scene has an ID already!', sceneMeta.sceneId)
       } else {
         console.log('Creating a new ID for this scene!')
         await OBR.scene.setMetadata({
-          [`${toolID}/metadata`]: {
+          [`${TOOL_ID}/metadata`]: {
             sceneId: window.crypto.randomUUID()
           }
         })
@@ -31,22 +29,22 @@ OBR.onReady(async () => {
   })
   
   await OBR.tool.create({
-    id: `${toolID}/tool`,
+    id: `${TOOL_ID}/tool`,
     icons: [
       {
         icon: "/notebook-pen.svg",
         label: "Notes",
       },
     ],
-    defaultMode: `${toolID}/mode`,
+    defaultMode: `${TOOL_ID}/mode`,
   });
   await OBR.tool.createMode({
-    id: `${toolID}/mode`,
+    id: `${TOOL_ID}/mode`,
     preventDrag: {dragging: false},
     cursors: [{
       cursor: 'pointer',
       filter: {
-          activeTools: [`${toolID}/tool`],
+          activeTools: [`${TOOL_ID}/tool`],
         },
     }],
     icons: [
@@ -54,17 +52,17 @@ OBR.onReady(async () => {
         icon: "/pen-line.svg",
         label: "Line",
         filter: {
-          activeTools: [`${toolID}/tool`],
+          activeTools: [`${TOOL_ID}/tool`],
         },
       },
     ],
     async onToolClick(_, event) {
-      await OBR.popover.close(popoverID);
+      await OBR.popover.close(POPOVER_ID);
       const {x, y} = await OBR.scene.grid.snapPosition(event.pointerPosition, 1, false, true);
-      const sceneMeta = (await OBR.scene.getMetadata())[`${toolID}/metadata`] as SceneMeta;
+      const sceneMeta = (await OBR.scene.getMetadata())[`${TOOL_ID}/metadata`] as SceneMeta;
 
       await OBR.popover.open({
-        id: popoverID,
+        id: POPOVER_ID,
         url: `/notes?sceneId=${sceneMeta.sceneId}&x=${Math.round(x)}&y=${Math.round(y)}`,
         height: 500,
         width: 500,
@@ -76,7 +74,7 @@ OBR.onReady(async () => {
       })
     },
     async onToolDoubleClick() {
-        await OBR.popover.close(popoverID)
+        await OBR.popover.close(POPOVER_ID)
     }
   });
 });
