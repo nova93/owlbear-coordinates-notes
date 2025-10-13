@@ -1,5 +1,6 @@
 import OBR from '@owlbear-rodeo/sdk';
 import { POPOVER_ID, TOOL_ID } from '../../config';
+import openPopover from '../../lib/openPopover';
 import '../../style.css';
 import type { SceneMeta } from '../../types';
 
@@ -57,21 +58,14 @@ OBR.onReady(async () => {
       },
     ],
     async onToolClick(_, event) {
-      await OBR.popover.close(POPOVER_ID);
       const {x, y} = await OBR.scene.grid.snapPosition(event.pointerPosition, 1, false, true);
       const sceneMeta = (await OBR.scene.getMetadata())[`${TOOL_ID}/metadata`] as SceneMeta;
 
-      await OBR.popover.open({
-        id: POPOVER_ID,
-        url: `/notes?sceneId=${sceneMeta.sceneId}&x=${Math.round(x)}&y=${Math.round(y)}`,
-        height: 500,
-        width: 500,
-        anchorOrigin: {
-          horizontal: 'LEFT',
-          vertical: 'BOTTOM'
-        },
-        disableClickAway: true
-      })
+      await openPopover({
+        x: Math.round(x),
+        y: Math.round(y),
+        sceneId: sceneMeta.sceneId
+      }, 'small')
     },
     async onToolDoubleClick() {
         await OBR.popover.close(POPOVER_ID)

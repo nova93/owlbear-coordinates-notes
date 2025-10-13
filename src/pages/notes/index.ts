@@ -1,11 +1,10 @@
-import OBR from '@owlbear-rodeo/sdk';
-import { POPOVER_ID } from '../../config';
+import openPopover from '../../lib/openPopover';
 import '../../style.css';
  
 const url = new URL(window.location.toString());
 const sceneId = url.searchParams.get('sceneId');
-const x = url.searchParams.get('x');
-const y = url.searchParams.get('y');
+const x = Number(url.searchParams.get('x'));
+const y = Number(url.searchParams.get('y'));
 
 const renderNote = async () => {
   const res = await fetch(`/api?${url.searchParams.toString()}`);
@@ -55,8 +54,8 @@ const renderNote = async () => {
     const res = await fetch('/api', {
       method: 'POST',
       body: JSON.stringify({
-        x: Number(x),
-        y: Number(y),
+        x,
+        y,
         sceneId,
         content: textarea.value
       })})
@@ -73,35 +72,11 @@ const renderNote = async () => {
   }
   const sizeUpClick = async () => {
     toggleSizers();
-
-    // TODO: duplicated, DRY-it
-    await OBR.popover.open({
-      id: POPOVER_ID,
-      url: `/notes?sceneId=${sceneId}&x=${x}&y=${y}`,
-      height: 10000,
-      width: 10000,
-      anchorOrigin: {
-        horizontal: 'CENTER',
-        vertical: 'CENTER'
-      },
-      disableClickAway: true
-    })
+    await openPopover({x, y, sceneId}, 'large')
   }
   const sizeDownClick = async () => {
     toggleSizers();
-
-    // TODO: duplicated, DRY-it
-    await OBR.popover.open({
-      id: POPOVER_ID,
-      url: `/notes?sceneId=${sceneId}&x=${x}&y=${y}`,
-      height: 500,
-        width: 500,
-      anchorOrigin: {
-        horizontal: 'LEFT',
-        vertical: 'BOTTOM'
-      },
-      disableClickAway: true
-    })
+    await openPopover({x, y, sceneId}, 'small')
   }
 
   editButton.addEventListener('click', handleEditClick);
