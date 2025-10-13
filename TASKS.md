@@ -9,7 +9,7 @@
   - if I can figure out what what they should have done, why not just do it?
 - Implement syntax highlighting in the editor mode
 - persist not-saved notes to `localStorage`.
-- Do we need note versioning?
+- [idea] Note versioning?
 - Where should I host this app?
   - - proper db, I'd like to host them together, where's that?
 - Setup CI/CD
@@ -17,3 +17,5 @@
 - FE framework rewrite? Vanilla is cool, but tiring, maybe web components, because fun?
 - Add DrizzleORM, because :puke:
 - Add linting (biome.js)
+- [idea] Attach notes to assets
+- [idea] Allow players to view notes
