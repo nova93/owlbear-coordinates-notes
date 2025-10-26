@@ -2,7 +2,7 @@ const manifest = {
 	name: "Grid Notes",
 	version: "1.0.0",
 	manifest_version: 1,
-	homepage_url: "http://localhost:3000/",
+	homepage_url: "/",
 	action: {
 		title: "Grid Notes",
 		icon: "/notebook-pen.svg",
