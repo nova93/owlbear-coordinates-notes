@@ -1,5 +1,5 @@
 import { Database } from "bun:sqlite";
-import { type Note, type NoteQueryParams } from "../types";
+import type { Note, NoteQueryParams } from "../types";
 
 const db = new Database("notes.sqlite", { create: true });
 
@@ -14,11 +14,13 @@ db.run(`
   );
 `);
 
-export const getNote = db.query<Note, NoteQueryParams>(`SELECT content FROM notes WHERE x = $x AND y = $y AND sceneId = $sceneId;`)
+export const getNote = db.query<Note, NoteQueryParams>(
+	`SELECT content FROM notes WHERE x = $x AND y = $y AND sceneId = $sceneId;`,
+);
 export const createNote = db.query<Note, NoteQueryParams>(`
   INSERT INTO notes (x, y, sceneId, content)
   VALUES($x, $y, $sceneId, $content);
-`)
+`);
 export const updateNote = db.query<Note, NoteQueryParams>(`
   UPDATE notes
   SET content = $content
@@ -26,6 +28,6 @@ export const updateNote = db.query<Note, NoteQueryParams>(`
     x = $x AND
     y = $y AND
     sceneId = $sceneId
-  `)
+  `);
 
-export default db
+export default db;
