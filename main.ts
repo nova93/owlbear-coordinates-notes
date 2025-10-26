@@ -5,6 +5,7 @@ import manifest from "./src/pages/manifest";
 import notesPage from "./src/pages/notes/index.html";
 
 Bun.serve({
+	development: true,
 	port: process.env.PORT || 3000,
 	routes: {
 		"/": homePage,
@@ -37,8 +38,5 @@ Bun.serve({
 
 	fetch() {
 		return new Response("Not Found", { status: 404 });
-	},
-	error(error) {
-		console.log("server error", error);
 	},
 });
