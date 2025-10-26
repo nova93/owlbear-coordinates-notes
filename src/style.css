@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
 :root {
 	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
@@ -14,11 +17,6 @@ body {
 	margin: 0;
 }
 
-h1 {
-	font-size: 3.2em;
-	line-height: 1.1;
-}
-
 #app {
 	padding: 1rem;
 }
@@ -29,17 +27,4 @@ header {
 	background: #505050;
 	padding: 0.5rem;
 	border-radius: 5px;
-}
-
-textarea {
-	width: calc(100% - 2rem);
-	min-height: calc(100vh - 8rem);
-	padding: 1rem;
-	margin: 1rem 0.5rem 0 0;
-	resize: none;
-	border: 0;
-}
-
-.hidden {
-	display: none;
 }
