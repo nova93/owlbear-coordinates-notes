@@ -16,11 +16,17 @@ Bun.serve({
 				"Access-Control-Allow-Origin": "https://www.owlbear.rodeo",
 			},
 		}),
-		"/manifest": Response.json(manifest, {
-			headers: {
-				"Access-Control-Allow-Origin": "https://www.owlbear.rodeo",
-			},
-		}),
+		"/manifest": (req) => {
+			const url = new URL(req.url);
+			return Response.json(
+				{ ...manifest, homepage_url: url.origin },
+				{
+					headers: {
+						"Access-Control-Allow-Origin": "https://www.owlbear.rodeo",
+					},
+				},
+			);
+		},
 		"/api": {
 			GET: ApiGET,
 			POST: ApiPOST,
