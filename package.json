@@ -1,18 +1,22 @@
 {
-  "name": "owlbear-coordinates-notes",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "bun run --watch main.ts"
-  },
-  "devDependencies": {
-    "@types/bun": "^1.2.23",
-    "typescript": "~5.9.3"
-  },
-  "dependencies": {
-    "@owlbear-rodeo/sdk": "^3.1.0",
-    "markdown-it": "^14.1.0",
-    "zod": "^4.1.12"
-  }
+	"name": "owlbear-coordinates-notes",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "bun run --watch main.ts",
+		"lint": "bunx biome check --write",
+		"prepare": "husky"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.3.0",
+		"@types/bun": "^1.2.23",
+		"typescript": "~5.9.3"
+	},
+	"dependencies": {
+		"@owlbear-rodeo/sdk": "^3.1.0",
+		"husky": "^9.1.7",
+		"markdown-it": "^14.1.0",
+		"zod": "^4.1.12"
+	}
 }
