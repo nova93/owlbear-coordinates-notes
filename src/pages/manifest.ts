@@ -5,7 +5,7 @@ const manifest = {
 	action: {
 		title: "Grid Notes",
 		icon: "/notebook-pen.svg",
-		popover: "/",
+		popover: "/settings",
 		height: 600,
 		width: 500,
 	},

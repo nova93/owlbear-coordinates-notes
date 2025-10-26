@@ -19,12 +19,11 @@ body {
 
 #app {
 	padding: 1rem;
+	display: flex;
+	justify-content: center;
 }
 
-header {
-	position: sticky;
-	top: 0;
-	background: #505050;
-	padding: 0.5rem;
-	border-radius: 5px;
+main {
+	max-width: 500px;
+	width: 100%;
 }
