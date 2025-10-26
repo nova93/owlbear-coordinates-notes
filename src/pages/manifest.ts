@@ -1,10 +1,10 @@
 const manifest = {
-  "name": "Coordinates Notes",
+  "name": "Grid Notes",
   "version": "1.0.0",
   "manifest_version": 1,
   "homepage_url": "http://localhost:3000/",
   "action": {
-    "title": "Coordinates Notes",
+    "title": "Grid Notes",
     "icon": "/notebook-pen.svg",
     "popover": "/",
     "height": 200,

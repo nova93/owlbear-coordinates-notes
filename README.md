@@ -1,6 +1,6 @@
-# Owlbear Coordinates Notes
+# Owlbear Rodeo Grid Notes
 
-An Owlbear Rodeo extension which allows you to write notes for grid location. The notes are currently saved to a local SQLite database.
+An Owlbear Rodeo extension which allows you to write notes for grid location. The notes will be saved to `localStorage`
 
 To run the app you will need to first install [Bun.sh](https://bun.sh/):
 

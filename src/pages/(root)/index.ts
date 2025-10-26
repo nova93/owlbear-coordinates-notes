@@ -1,15 +1,98 @@
 import OBR from '@owlbear-rodeo/sdk';
-import { POPOVER_ID, TOOL_ID } from '../../config';
+import { LS_KEY, POPOVER_ID, TOOL_ID } from '../../config';
+
+import * as z from 'zod';
 import openPopover from '../../lib/openPopover';
 import '../../style.css';
-import type { SceneMeta } from '../../types';
+import type { Note, SceneMeta } from '../../types';
+
+const NoteSchema = z.object({
+  x: z.number(),
+  y: z.number(),
+  sceneId: z.string(),
+  content: z.string()
+})
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
-    <h3>Welcome to Notes!</h3>
+    <h3>Welcome to Grid Notes!</h3>
     <p>Llama welcomes thee 🦙</p>
+    <button id="export">Export data</button>
+    <form id="import">
+      <label>Select file to import
+        <input type="file" id="import-file" name="file" accept=".json" required />
+      </label>
+      <button type="submit">Import</button>
+    </form>
   </div>
 `
+
+const exportEl = document.getElementById('export');
+const importFormEl = document.getElementById('import') as HTMLFormElement;
+const importFileEl = document.getElementById('import-file') as HTMLInputElement
+
+exportEl.addEventListener('click', () => {
+  const raw = localStorage.getItem(LS_KEY);
+
+  if (!raw) {
+    alert("There's nothing to export");
+    return;
+  }
+
+  let notes: Note[];
+  try {
+    notes = JSON.parse(raw);
+  } catch (err) {
+    alert('Stored data is not valid JSON.');
+    return;
+  }
+
+  const blob = new Blob([JSON.stringify(notes, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${LS_KEY}-export.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+importFormEl.addEventListener('submit', (ev) => {
+  ev.preventDefault();
+  // grab file
+  const file = importFileEl.files[0];
+  
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const result = e.target.result;
+    if (typeof result !== 'string') {
+      throw Error('Wrong file format')
+    }
+
+    try {
+      const jsonData = JSON.parse(result);
+
+      try {
+        const parsed = NoteSchema.parse(jsonData)
+        localStorage.setItem(LS_KEY, JSON.stringify(parsed));
+        importFormEl.reset()
+      } catch (err) {
+        if (err instanceof z.ZodError) {
+          console.log('File validation failed', err.issues);
+          throw Error()
+        }
+      }
+    } catch (err) {
+      alert('Error: The uploaded file is not valid JSON.');
+    }
+  };
+
+  reader.readAsText(file);
+});
+
+
 
 OBR.onReady(async () => {
   OBR.scene.onReadyChange(async (ready) => {
@@ -39,6 +122,7 @@ OBR.onReady(async () => {
     ],
     defaultMode: `${TOOL_ID}/mode`,
   });
+  
   await OBR.tool.createMode({
     id: `${TOOL_ID}/mode`,
     preventDrag: {dragging: false},

@@ -16,3 +16,6 @@ export type NoteQueryParams = {
   $content?: string
 }
 
+export type UserSettings = {
+  storage: 'browser' | 'sqlite'
+}

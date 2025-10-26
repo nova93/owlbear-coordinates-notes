@@ -35,6 +35,6 @@ export default async (ids: Omit<Note, 'content'>, variant: Variant) => {
       ...size[variant],
       id: POPOVER_ID,
       url: `/notes?sceneId=${ids.sceneId}&x=${ids.x}&y=${ids.y}`,
-      disableClickAway: true
+      disableClickAway: true,
     });
 }

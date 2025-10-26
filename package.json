@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@owlbear-rodeo/sdk": "^3.1.0",
-    "markdown-it": "^14.1.0"
+    "markdown-it": "^14.1.0",
+    "zod": "^4.1.12"
   }
 }
