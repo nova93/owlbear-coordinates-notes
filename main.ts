@@ -5,7 +5,7 @@ import manifest from "./src/pages/manifest";
 import notesPage from "./src/pages/notes/index.html";
 
 Bun.serve({
-	port: 3000,
+	port: process.env.PORT || 3000,
 	routes: {
 		"/": homePage,
 		"/notes": notesPage,
