@@ -10,12 +10,12 @@
 - [idea] Implement syntax highlighting in the editor mode
 - [idea] persist not-saved notes to `localStorage`.
 - [idea] Note versioning?
-- Where should I host this app?
-  - proper db, I'd like to host them together, where's that?
-- Setup CI/CD
+- ~~Where should I host this app?~~
+  - ~~proper db, I'd like to host them together, where's that?~~
+- ~~Setup CI/CD~~
 - Add testing library (vitest + playwright if e2e is needed)
 - ~~FE framework rewrite? Vanilla is cool, but tiring, maybe web components, because fun?~~
 - Add DrizzleORM, because :puke:
-- Add linting (biome.js)
+- ~~Add linting (biome.js)~~
 - [idea] Attach notes to assets
 - [idea] Allow players to view notes
