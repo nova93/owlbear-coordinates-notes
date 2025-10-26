@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "bun run --watch main.ts",
 		"lint": "bunx biome check --write",
+		"lint:ci": "bunx biome check",
 		"prepare": "husky"
 	},
 	"devDependencies": {
@@ -15,8 +16,11 @@
 	},
 	"dependencies": {
 		"@owlbear-rodeo/sdk": "^3.1.0",
+		"bun-plugin-tailwind": "^0.1.2",
+		"daisyui": "^5.3.10",
 		"husky": "^9.1.7",
 		"markdown-it": "^14.1.0",
+		"tailwindcss": "^4.1.16",
 		"zod": "^4.1.12"
 	}
 }

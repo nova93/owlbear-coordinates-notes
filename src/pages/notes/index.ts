@@ -11,29 +11,20 @@ const x = Number(url.searchParams.get("x"));
 const y = Number(url.searchParams.get("y"));
 
 const paint = async () => {
-	const { raw, formatted } = await getNote(
-		{
-			sceneId,
-			x,
-			y,
-		},
-		url,
-	);
+	const { raw, formatted } = await getNote({ sceneId, x, y }, url);
 
 	document.querySelector<HTMLDivElement>("#app").innerHTML = `
     <header>
-      <button id="editButton">Edit</button>
-      <button id="saveButton" class="hidden">Save</button>
-      <button id="cancelButton" class="hidden">Cancel</button>
-      <button id="sizeUp">Resize</button>
-      <button id="sizeDown" class="hidden">Resize</button>
-      <button id="closeButton">Close</button>
+      <button class="btn btn-outline" id="editButton">Edit</button>
+      <button class="btn btn-outline hidden" id="saveButton">Save</button>
+      <button class="btn btn-outline hidden" id="cancelButton">Cancel</button>
+      <button class="btn btn-outline" id="sizeUp">Resize</button>
+      <button class="btn btn-outline hidden" id="sizeDown">Resize</button>
+      <button class="btn btn-outline" id="closeButton">Close</button>
     </header>
     <main>
-      <div id="formatted">
-        ${formatted}
-      </div>
-      <textarea id="raw" class="hidden">${raw}</textarea>
+      <div id="formatted">${formatted}</div>
+      <textarea id="raw" class="textarea hidden">${raw}</textarea>
     </main>
   `;
 
@@ -60,12 +51,8 @@ const paint = async () => {
 		sizeDown.classList.toggle("hidden");
 	};
 
-	const handleEditClick = () => {
-		toggleButtons();
-	};
-	const handleCancelClick = async () => {
-		await paint();
-	};
+	const handleEditClick = () => toggleButtons();
+	const handleCancelClick = async () => await paint();
 	const sizeUpClick = async () => {
 		toggleSizers();
 		await openPopover({ x, y, sceneId }, "large");
@@ -74,9 +61,7 @@ const paint = async () => {
 		toggleSizers();
 		await openPopover({ x, y, sceneId }, "small");
 	};
-	const handleCloseClick = () => {
-		OBR.popover.close(POPOVER_ID);
-	};
+	const handleCloseClick = () => OBR.popover.close(POPOVER_ID);
 
 	editButton.addEventListener("click", handleEditClick);
 	saveButton.addEventListener("click", () =>

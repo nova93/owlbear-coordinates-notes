@@ -16,13 +16,14 @@ document.querySelector<HTMLDivElement>("#app").innerHTML = `
   <div>
     <h3>Welcome to Grid Notes!</h3>
     <p>Llama welcomes thee 🦙</p>
-    <button id="export">Export data</button>
+    <button class="btn btn-outline" id="export">Export data</button>
     <form id="import">
-      <label>Select file to import
-        <input type="file" id="import-file" name="file" accept=".json" required />
-      </label>
-      <button type="submit">Import</button>
-    </form>
+			<fieldset class="fieldset">
+				<legend class="fieldset-legend">Pick a file</legend>
+				<input class="file-input" type="file" id="import-file" name="file" accept=".json" required />
+				<button class="btn btn-outline" type="submit">Import</button>
+			</fieldset>
+		</form>
   </div>
 `;
 

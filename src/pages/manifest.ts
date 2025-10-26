@@ -6,8 +6,8 @@ const manifest = {
 		title: "Grid Notes",
 		icon: "/notebook-pen.svg",
 		popover: "/",
-		height: 200,
-		width: 400,
+		height: 600,
+		width: 500,
 	},
 };
 
