@@ -8,5 +8,6 @@
 		"allowImportingTsExtensions": true,
 		"verbatimModuleSyntax": true,
 		"noEmit": true
-	}
+	},
+	"include": ["src", "main.ts", "global.d.ts"]
 }

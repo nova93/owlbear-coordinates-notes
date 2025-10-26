@@ -1,3 +1,4 @@
+import notebookPen from "./src/assets/notebook-pen.svg";
 import homePage from "./src/pages/(root)/index.html";
 import ApiGET from "./src/pages/api/get";
 import ApiPOST from "./src/pages/api/post";
@@ -9,15 +10,12 @@ Bun.serve({
 	routes: {
 		"/": homePage,
 		"/notes": notesPage,
-		"/notebook-pen.svg": new Response(
-			await Bun.file("./src/assets/notebook-pen.svg").bytes(),
-			{
-				headers: {
-					"Content-Type": "image/svg+xml",
-					"Access-Control-Allow-Origin": "https://www.owlbear.rodeo",
-				},
+		"/notebook-pen.svg": new Response(notebookPen, {
+			headers: {
+				"Content-Type": "image/svg+xml",
+				"Access-Control-Allow-Origin": "https://www.owlbear.rodeo",
 			},
-		),
+		}),
 		"/manifest": Response.json(manifest, {
 			headers: {
 				"Access-Control-Allow-Origin": "https://www.owlbear.rodeo",

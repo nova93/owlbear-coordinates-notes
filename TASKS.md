@@ -16,6 +16,6 @@
 - Add testing library (vitest + playwright if e2e is needed)
 - ~~FE framework rewrite? Vanilla is cool, but tiring, maybe web components, because fun?~~
 - Add DrizzleORM, because :puke:
-- Add linting (biome.js)
+- ~~Add linting (biome.js)~~
 - [idea] Attach notes to assets
 - [idea] Allow players to view notes
