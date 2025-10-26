@@ -1,5 +1,6 @@
 import OBR from "@owlbear-rodeo/sdk";
 import * as z from "zod";
+import patreonIcon from "../../assets/patreon";
 import { LS_KEY, POPOVER_ID, TOOL_ID } from "../../config";
 import openPopover from "../../lib/openPopover";
 import "../../style.css";
@@ -16,6 +17,10 @@ document.querySelector<HTMLDivElement>("#app").innerHTML = `
   <div>
     <h3>Welcome to Grid Notes!</h3>
     <p>Llama welcomes thee 🦙</p>
+		<a class="btn" href="https://www.patreon.com/cw/Sykst" target="_blank">
+			${patreonIcon}
+			Support me
+		</a>
     <button class="btn btn-outline" id="export">Export data</button>
     <form id="import">
 			<fieldset class="fieldset">
