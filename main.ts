@@ -3,11 +3,13 @@ import ApiGET from "./src/pages/api/get";
 import ApiPOST from "./src/pages/api/post";
 import manifest from "./src/pages/manifest";
 import notesPage from "./src/pages/notes/index.html";
+import settingsPage from "./src/pages/settings/index.html";
 
 Bun.serve({
 	port: process.env.PORT || 3000,
 	routes: {
 		"/": homePage,
+		"/settings": settingsPage,
 		"/notes": notesPage,
 		"/notebook-pen.svg": new Response(
 			await Bun.file("./src/assets/notebook-pen.svg").bytes(),

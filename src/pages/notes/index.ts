@@ -28,15 +28,15 @@ const paint = async () => {
     </main>
   `;
 
-	const editButton: HTMLButtonElement = document.querySelector("#editButton");
-	const saveButton: HTMLButtonElement = document.querySelector("#saveButton");
-	const cancelButton: HTMLButtonElement =
-		document.querySelector("#cancelButton");
-	const formattedElem: HTMLDivElement = document.querySelector("#formatted");
-	const textarea: HTMLTextAreaElement = document.querySelector("#raw");
-	const sizeUp: HTMLButtonElement = document.querySelector("#sizeUp");
-	const sizeDown: HTMLButtonElement = document.querySelector("#sizeDown");
-	const closeButton: HTMLButtonElement = document.querySelector("#closeButton");
+	const editButton = document.querySelector<HTMLButtonElement>("#editButton");
+	const saveButton = document.querySelector<HTMLButtonElement>("#saveButton");
+	const cancelButton =
+		document.querySelector<HTMLButtonElement>("#cancelButton");
+	const formattedElem = document.querySelector<HTMLButtonElement>("#formatted");
+	const textarea = document.querySelector<HTMLTextAreaElement>("#raw");
+	const sizeUp = document.querySelector<HTMLButtonElement>("#sizeUp");
+	const sizeDown = document.querySelector<HTMLButtonElement>("#sizeDown");
+	const closeButton = document.querySelector<HTMLButtonElement>("#closeButton");
 
 	const toggleButtons = () => {
 		editButton.classList.toggle("hidden");
