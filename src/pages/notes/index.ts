@@ -1,14 +1,19 @@
+import OBR from '@owlbear-rodeo/sdk';
+import { POPOVER_ID } from '../../config';
 import openPopover from '../../lib/openPopover';
 import '../../style.css';
+import getNote from './getNote';
+import handleSubmit from './handleSubmit';
  
 const url = new URL(window.location.toString());
 const sceneId = url.searchParams.get('sceneId');
 const x = Number(url.searchParams.get('x'));
 const y = Number(url.searchParams.get('y'));
 
-const renderNote = async () => {
-  const res = await fetch(`/api?${url.searchParams.toString()}`);
-  const {formatted, raw} = await res.json()
+const paint = async () => {
+  const {raw, formatted} = await getNote({
+    sceneId, x, y
+  }, url)
   
   document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <header>
@@ -17,6 +22,7 @@ const renderNote = async () => {
       <button id="cancelButton" class="hidden">Cancel</button>
       <button id="sizeUp">Resize</button>
       <button id="sizeDown" class="hidden">Resize</button>
+      <button id="closeButton">Close</button>
     </header>
     <main>
       <div id="formatted">
@@ -33,6 +39,7 @@ const renderNote = async () => {
   const textarea: HTMLTextAreaElement = document.querySelector('#raw');
   const sizeUp: HTMLButtonElement = document.querySelector('#sizeUp');
   const sizeDown: HTMLButtonElement = document.querySelector('#sizeDown');
+  const closeButton: HTMLButtonElement = document.querySelector('#closeButton');
 
   const toggleButtons = () => {
     editButton.classList.toggle('hidden');
@@ -50,25 +57,8 @@ const renderNote = async () => {
   const handleEditClick = () => {
     toggleButtons()
   }
-  const handleSubmitClick = async () => {
-    const res = await fetch('/api', {
-      method: 'POST',
-      body: JSON.stringify({
-        x,
-        y,
-        sceneId,
-        content: textarea.value
-      })})
-
-      if (res.ok) {
-        await renderNote()
-        return
-      }
-
-      throw Error('failed to submit')
-  }
   const handleCancelClick = async () => {
-    await renderNote()
+    await paint()
   }
   const sizeUpClick = async () => {
     toggleSizers();
@@ -78,12 +68,16 @@ const renderNote = async () => {
     toggleSizers();
     await openPopover({x, y, sceneId}, 'small')
   }
+  const handleCloseClick = () => {
+    OBR.popover.close(POPOVER_ID);
+  }
 
   editButton.addEventListener('click', handleEditClick);
-  saveButton.addEventListener('click', handleSubmitClick);
+  saveButton.addEventListener('click', () => handleSubmit({sceneId, x, y, content: textarea.value}, paint));
   cancelButton.addEventListener('click', handleCancelClick);
   sizeUp.addEventListener('click', sizeUpClick);
   sizeDown.addEventListener('click', sizeDownClick);
+  closeButton.addEventListener('click', handleCloseClick);
 }
 
-await renderNote()
+await paint()
