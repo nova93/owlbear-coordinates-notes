@@ -1,4 +1,6 @@
 import OBR from "@owlbear-rodeo/sdk";
+import ban from "../../assets/ban.svg" with { type: "text" };
+import check from "../../assets/check.svg" with { type: "text" };
 import pencilLine from "../../assets/pen-line.svg" with { type: "text" };
 import scaling from "../../assets/scaling.svg" with { type: "text" };
 import xIcon from "../../assets/x.svg" with { type: "text" };
@@ -18,21 +20,21 @@ const paint = async () => {
 
 	document.querySelector<HTMLDivElement>("#app").innerHTML = `
 		<main>
-			<nav class="sticky top-0 py-4 -mt-4 bg-base-100 flex place-content-between">
+			<nav class="sticky top-0 py-4 -mt-4 -mx-1 px-1 bg-base-100 flex place-content-between z-10">
 				<div>
-					<button class="btn btn-accent" id="editButton">${pencilLine} Edit</button>
-					<button class="btn btn-success hidden" id="saveButton">Save</button>
-					<button class="btn btn-error hidden" id="cancelButton">Cancel</button>
+					<button class="btn btn-sm btn-accent" id="editButton">${pencilLine} Edit</button>
+					<button class="btn btn-sm btn-success hidden" id="saveButton">${check} Save</button>
+					<button class="btn btn-sm btn-error hidden" id="cancelButton">${ban} Cancel</button>
 				</div>
 				<div>
-					<button class="btn btn-info" id="sizeUp">${scaling} Resize</button>
-					<button class="btn btn-info hidden" id="sizeDown">${scaling} Resize</button>
-					<button class="btn btn-info" id="closeButton">${xIcon} Close</button>
+					<button class="btn btn-sm btn-info" id="sizeUp">${scaling} Resize</button>
+					<button class="btn btn-sm btn-info hidden" id="sizeDown">${scaling} Resize</button>
+					<button class="btn btn-sm btn-info" id="closeButton">${xIcon} Close</button>
 				</div>
 			</nav>
 			<div class="mb-16">
 				<div id="formatted">${formatted}</div>
-				<p id="raw" contentEditable class="textarea hidden w-full resize-none h-full">${raw}</p>
+				<pre id="raw" contentEditable class="textarea hidden w-full resize-none h-full mt-2 whitespace-break-spaces">${raw}</pre>
 			</div>
 		</main>
   `;
@@ -42,7 +44,7 @@ const paint = async () => {
 	const cancelButton =
 		document.querySelector<HTMLButtonElement>("#cancelButton");
 	const formattedElem = document.querySelector<HTMLButtonElement>("#formatted");
-	const textarea = document.querySelector<HTMLTextAreaElement>("#raw");
+	const textarea = document.querySelector<HTMLPreElement>("#raw");
 	const sizeUp = document.querySelector<HTMLButtonElement>("#sizeUp");
 	const sizeDown = document.querySelector<HTMLButtonElement>("#sizeDown");
 	const closeButton = document.querySelector<HTMLButtonElement>("#closeButton");
@@ -74,7 +76,7 @@ const paint = async () => {
 
 	editButton.addEventListener("click", handleEditClick);
 	saveButton.addEventListener("click", () =>
-		handleSubmit({ sceneId, x, y, content: textarea.value }, paint),
+		handleSubmit({ sceneId, x, y, content: textarea.innerText }, paint),
 	);
 	cancelButton.addEventListener("click", handleCancelClick);
 	sizeUp.addEventListener("click", sizeUpClick);
