@@ -9,7 +9,6 @@
   - if I can figure out what what they should have done, why not just do it?
 - Add testing library (vitest + playwright if e2e is needed)
 - Add DrizzleORM, because :puke:
-- Homepage (description of the extension/installation etc)
 
 ## Ideas
 
@@ -29,3 +28,4 @@
 - ~~FE framework rewrite? Vanilla is cool, but tiring, maybe web components, because fun?~~
 - ~~Add linting (biome.js)~~
 - ~~Settings page (popover url in the manifest)~~
+- ~~Homepage (description of the extension/installation etc)~~

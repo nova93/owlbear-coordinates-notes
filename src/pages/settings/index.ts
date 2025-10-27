@@ -23,7 +23,7 @@ APP.innerHTML = `
     ${header("Grid Notes")}
 		<section class="mt-8">${introComponent}</section>
 		<section class="mt-8">${exportComponent("export")}</section>
-		<section  class="mt-8 my-16">${importComponent("import", "import-file")}</section>
+		<section class="mt-8 my-16">${importComponent("import", "import-file")}</section>
   </main>
 `;
 

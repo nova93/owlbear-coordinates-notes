@@ -6,8 +6,8 @@ export default (formId: string, fileInputId: string) => `
   ${alert("Note: Importing notes will delete your current notes and replace them with the imported ones.")}
   <form id="${formId}">
     <fieldset class="fieldset my-4">
-      <input class="file-input w-full" type="file" id="${fileInputId}" name="file" accept=".json" required />
-      <button class="btn btn-outline btn-block" type="submit">Import</button>
+      <input class="file-input w-full file-input-accent" type="file" id="${fileInputId}" name="file" accept=".json" required />
+      <button class="btn btn-outline btn-block btn-accent" type="submit">Import</button>
     </fieldset>
   </form>
 `;

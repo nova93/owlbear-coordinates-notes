@@ -1,4 +1,4 @@
-import patreon from "../assets/patreon";
+import patreon from "../assets/patreon.svg" with { type: "text" };
 
 export default `
 	<a
