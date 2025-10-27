@@ -2,6 +2,9 @@ const manifest = {
 	name: "Grid Notes",
 	version: "1.0.0",
 	manifest_version: 1,
+	icon: "/notebook-pen.svg",
+	author: "Made with ☕️ by Sykst",
+	description: "Attach notes to your map grid.",
 	action: {
 		title: "Grid Notes",
 		icon: "/notebook-pen.svg",
