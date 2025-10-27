@@ -1,4 +1,7 @@
 import OBR from "@owlbear-rodeo/sdk";
+import pencilLine from "../../assets/pen-line.svg" with { type: "text" };
+import scaling from "../../assets/scaling.svg" with { type: "text" };
+import xIcon from "../../assets/x.svg" with { type: "text" };
 import { POPOVER_ID } from "../../config";
 import openPopover from "../../lib/openPopover";
 import "../../style.css";
@@ -14,18 +17,24 @@ const paint = async () => {
 	const { raw, formatted } = await getNote({ sceneId, x, y }, url);
 
 	document.querySelector<HTMLDivElement>("#app").innerHTML = `
-    <header>
-      <button class="btn btn-outline" id="editButton">Edit</button>
-      <button class="btn btn-outline hidden" id="saveButton">Save</button>
-      <button class="btn btn-outline hidden" id="cancelButton">Cancel</button>
-      <button class="btn btn-outline" id="sizeUp">Resize</button>
-      <button class="btn btn-outline hidden" id="sizeDown">Resize</button>
-      <button class="btn btn-outline" id="closeButton">Close</button>
-    </header>
-    <main>
-      <div id="formatted">${formatted}</div>
-      <textarea id="raw" class="textarea hidden">${raw}</textarea>
-    </main>
+		<main>
+			<nav class="sticky top-0 py-4 -mt-4 bg-base-100 flex place-content-between">
+				<div>
+					<button class="btn btn-accent" id="editButton">${pencilLine} Edit</button>
+					<button class="btn btn-success hidden" id="saveButton">Save</button>
+					<button class="btn btn-error hidden" id="cancelButton">Cancel</button>
+				</div>
+				<div>
+					<button class="btn btn-info" id="sizeUp">${scaling} Resize</button>
+					<button class="btn btn-info hidden" id="sizeDown">${scaling} Resize</button>
+					<button class="btn btn-info" id="closeButton">${xIcon} Close</button>
+				</div>
+			</nav>
+			<div class="mb-16">
+				<div id="formatted">${formatted}</div>
+				<p id="raw" contentEditable class="textarea hidden w-full resize-none h-full">${raw}</p>
+			</div>
+		</main>
   `;
 
 	const editButton = document.querySelector<HTMLButtonElement>("#editButton");

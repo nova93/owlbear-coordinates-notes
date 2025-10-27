@@ -9,6 +9,7 @@
   - if I can figure out what what they should have done, why not just do it?
 - Add testing library (vitest + playwright if e2e is needed)
 - Add DrizzleORM, because :puke:
+- CSS styles for all markdown things under #formatted
 
 ## Ideas
 
