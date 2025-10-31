@@ -10,7 +10,6 @@
 - Add testing library (vitest + playwright if e2e is needed)
 - Add DrizzleORM, because :puke:
 - CSS styles for all markdown things under #formatted
-- Don't create notes on click
 - Try to use pointer builder to show (local items so only the current user can see them) which grid locations have a note attached
 - Use the tool toolbar for visibility toggle
 - Write a how-to use the extension
@@ -34,3 +33,4 @@
 - ~~Add linting (biome.js)~~
 - ~~Settings page (popover url in the manifest)~~
 - ~~Homepage (description of the extension/installation etc)~~
+- ~~Don't create notes on click~~
