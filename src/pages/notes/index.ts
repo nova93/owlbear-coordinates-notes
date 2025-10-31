@@ -16,7 +16,7 @@ const x = Number(url.searchParams.get("x"));
 const y = Number(url.searchParams.get("y"));
 
 const paint = async () => {
-	const { raw, formatted } = await getNote({ sceneId, x, y }, url);
+	const { raw, formatted } = await getNote({ sceneId, x, y });
 
 	document.querySelector<HTMLDivElement>("#app").innerHTML = `
 		<main>

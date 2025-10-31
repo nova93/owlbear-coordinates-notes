@@ -1,6 +1,4 @@
 import homePage from "./src/pages/(root)/index.html";
-import ApiGET from "./src/pages/api/get";
-import ApiPOST from "./src/pages/api/post";
 import manifest from "./src/pages/manifest";
 import notesPage from "./src/pages/notes/index.html";
 import settingsPage from "./src/pages/settings/index.html";
@@ -30,10 +28,6 @@ Bun.serve({
 					},
 				},
 			);
-		},
-		"/api": {
-			GET: ApiGET,
-			POST: ApiPOST,
 		},
 	},
 

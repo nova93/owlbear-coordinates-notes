@@ -17,5 +17,5 @@ export type NoteQueryParams = {
 };
 
 export type UserSettings = {
-	storage: "browser" | "sqlite";
+	storage: "browser";
 };
