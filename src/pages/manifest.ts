@@ -1,6 +1,8 @@
+import { NODE_ENV } from "../config";
+
 const manifest = {
 	name: "Grid Notes",
-	version: "1.0.0",
+	version: `1.1.0-${NODE_ENV}`,
 	manifest_version: 1,
 	icon: "/notebook-pen.svg",
 	author: "Made with ☕️ by Sykst",
