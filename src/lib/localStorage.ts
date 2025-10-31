@@ -44,7 +44,7 @@ export const update = (
 
 	// remove the original entry
 	const filtered = notes.filter(
-		(note) => note.sceneId !== sceneId && note.x !== x && note.y !== y,
+		(note) => !(note.sceneId === sceneId && note.x === x && note.y === y),
 	);
 
 	// add the new entry
