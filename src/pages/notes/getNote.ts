@@ -7,8 +7,10 @@ const getNote = async (noteParams: Omit<Note, "content">) => {
 	let note = LS.read(noteParams.sceneId, noteParams.x, noteParams.y);
 
 	if (!note) {
-		LS.create(noteParams.sceneId, noteParams.x, noteParams.y, "### new page");
-		note = LS.read(noteParams.sceneId, noteParams.x, noteParams.y);
+		note = {
+			...noteParams,
+			content: "### new page",
+		};
 	}
 
 	const md = markdownit();
